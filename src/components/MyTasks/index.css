@@ -1,0 +1,159 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  box-sizing: border-box;
+  color: #ffffff;
+  font-family: 'Roboto';
+  font-weight: 500;
+}
+
+.main-container {
+  display: flex;
+  min-height: 100vh;
+  background-color: #000000;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.create-task-section {
+  display: flex;
+  flex-direction: column;
+  padding: 50px 20px 50px 20px;
+  width: 30%;
+  max-width: 450px;
+  background-color: #131213;
+  /* border: 1px solid red; */
+}
+
+.task-heading {
+  font-size: 36px;
+  color: #f3aa4e;
+  text-align: center;
+}
+
+.task-input-container {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.input-label {
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+
+.input-box {
+  font-size: 15px;
+  height: 40px;
+  padding: 10px;
+  color: #000000;
+  outline: none;
+  border: none;
+  border: 5px;
+}
+
+.drop-down-option {
+  color: #000000;
+}
+
+.tag-selection-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 50px;
+  margin-bottom: 30px;
+}
+
+.add-task-btn {
+  height: 40px;
+  width: 120px;
+  background-color: #f3aa4e;
+  font-size: 16px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  align-self: center;
+}
+
+.user-tasks-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 50px 20px 40px 20px;
+  width: 100%;
+  /* border: 1px solid red; */
+}
+
+.tags-heading {
+  font-size: 32px;
+}
+
+.tags-list-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.tag-list-item {
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+
+.tag-btn {
+  height: 40px;
+  padding: 5px 18px 5px 18px;
+  border: 1px solid #f3aa4e;
+  background: none;
+  font-size: 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  outline: none;
+}
+
+.active-tag-btn {
+  background-color: #f3aa4e;
+  color: #ffffff;
+}
+
+.tasks-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.no-tasks {
+  font-size: 26px;
+  /* border: 1px solid red; */
+  text-align: center;
+  margin-top: 20px;
+}
+
+.task-list-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: #1a171d;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-radius: 25px;
+  border-left: 5px solid #d67d10;
+  align-items: center;
+}
+
+.task-para {
+  margin-right: 20px;
+  font-size: 20px;
+}
+
+.task-tag {
+  padding: 7px 15px 7px 15px;
+  background-color: #f3aa4e;
+  border-radius: 20px;
+  font-size: 17px;
+  align-self: flex-start;
+}
