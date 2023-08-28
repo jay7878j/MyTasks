@@ -1,4 +1,6 @@
 import {Component} from 'react'
+
+import {MdDelete} from 'react-icons/md'
 import {v4} from 'uuid'
 import './index.css'
 
@@ -11,6 +13,11 @@ const tagsList = [
   {
     optionId: 'EDUCATION',
     displayText: 'Education',
+    isActive: false,
+  },
+  {
+    optionId: 'GAMES',
+    displayText: 'Games',
     isActive: false,
   },
   {
@@ -44,8 +51,24 @@ class MyTasks extends Component {
     tagsListActive: tagsList,
   }
 
+  componentDidMount() {
+    const localTasksList = localStorage.getItem('taskList')
+    const parsedData = JSON.parse(localTasksList)
+    if (parsedData === null) {
+      this.setState({tasksList: []})
+    } else {
+      this.setState({tasksList: parsedData})
+    }
+  }
+
+  componentDidUpdate() {
+    const {tasksList} = this.state
+    localStorage.setItem('taskList', JSON.stringify([...tasksList]))
+  }
+
   //   On Task Add Section
   onFormSubmit = event => {
+    // const {tasksList} = this.state
     event.preventDefault()
     const {userTask, selectedTag} = this.state
     const taskObject = {
@@ -53,6 +76,8 @@ class MyTasks extends Component {
       task: userTask,
       tag: selectedTag,
     }
+
+    // localStorage.setItem('taskList', JSON.stringify([...tasksList, taskObject]))
 
     this.setState(prev => ({
       tasksList: [...prev.tasksList, taskObject],
@@ -85,10 +110,26 @@ class MyTasks extends Component {
                 eachTag => eachTag.optionId === tag,
               )
 
+              const onDeleteTask = () => {
+                const filteredTaskList = tasksList.filter(
+                  eachTaskItem => eachTaskItem.id !== id,
+                )
+                this.setState({tasksList: filteredTaskList})
+              }
+
               return (
                 <li className="task-list-item" key={id}>
                   <p className="task-para">{task}</p>
-                  <p className="task-tag">{tagObject.displayText}</p>
+                  <div className="delete-task-container">
+                    <p className="task-tag">{tagObject.displayText}</p>
+                    <button
+                      type="button"
+                      className="delete-btn"
+                      onClick={onDeleteTask}
+                    >
+                      <MdDelete className="delete-icon" />
+                    </button>
+                  </div>
                 </li>
               )
             })}
@@ -154,11 +195,10 @@ class MyTasks extends Component {
     return (
       <div className="task-input-container">
         <label htmlFor="task" className="input-label">
-          Task
+          Your Task
         </label>
-        <input
-          type="text"
-          className="input-box"
+        <textarea
+          className="textarea-input-box"
           id="task"
           placeholder="Enter the task here"
           onChange={onUserTaskValue}
@@ -180,7 +220,7 @@ class MyTasks extends Component {
     return (
       <div className="tag-selection-container">
         <label htmlFor="tag" className="input-label">
-          Tags
+          Select Task Tag
         </label>
         <select
           value={selectedTag}
@@ -220,7 +260,7 @@ class MyTasks extends Component {
           </form>
         </div>
         <div className="user-tasks-section">
-          <h1 className="tags-heading">Tags</h1>
+          <h1 className="tags-heading">Filter By Tags</h1>
           {this.tagsListBtnContainer()}
           {this.tasksListContainer()}
         </div>
